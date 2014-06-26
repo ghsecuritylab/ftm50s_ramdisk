@@ -364,9 +364,9 @@ function saveDHCP( _element )
 	var end_addr_arr = ip_pool_end_value.split(".");
 	var router_addr_arr = router_value.split(".");
 
-	var set_start_addr = start_addr_arr[0] + "." + start_addr_arr[1] + "." + net_addr_arr[2] + "." + start_addr_arr[3];
-	var set_end_addr = end_addr_arr[0] + "." + end_addr_arr[1] + "." + net_addr_arr[2] + "." + end_addr_arr[3];
-	var set_router_addr = router_addr_arr[0] + "." + router_addr_arr[1] + "." + net_addr_arr[2] + "." + router_addr_arr[3];
+	var set_start_addr = net_addr_arr[0] + "." + net_addr_arr[1] + "." + net_addr_arr[2] + "." + start_addr_arr[3];
+	var set_end_addr = net_addr_arr[0] + "." + net_addr_arr[1] + "." + net_addr_arr[2] + "." + end_addr_arr[3];
+	var set_router_addr = net_addr_arr[0] + "." + net_addr_arr[1] + "." + net_addr_arr[2] + "." + net_addr_arr[3];
 	//alert(set_start_addr);
 	//alert(set_end_addr);
 	//======================================

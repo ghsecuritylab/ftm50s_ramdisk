@@ -756,8 +756,8 @@ fi
 
 	gzip -f9 ramdisk
 	mkimage -n 'Ramdisk v1.0.1' -A arm -O linux -T ramdisk -C gzip -a 0x00a00000 -d ramdisk.gz ramdisk.img
-#	$CP ramdisk.gz /tftpboot
-#	$CP ramdisk.img /tftpboot
+	$CP ramdisk.gz /tftpboot
+	$CP ramdisk.img /tftpboot
 
     exit    3
 )
