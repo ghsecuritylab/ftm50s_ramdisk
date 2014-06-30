@@ -744,6 +744,7 @@ fi
 	$CP -rf node_usr/local/include "$ROOT/usr/local"
 	$CP -rf node_usr/local/lib "$ROOT/usr/local"
 	$CP -rf node_usr/local/share "$ROOT/usr/local"
+	$CP -rf $STL/usr/share/snmp "$ROOT/usr/share/snmp"
 
 )
 

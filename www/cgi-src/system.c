@@ -299,7 +299,7 @@ int FTMC_System(qentry_t *pReq)
 		XML_PutHeader(pReq);
 
 		//FILE *fp = popen("sync;sync;", "r");
-		FILE *detachFp = popen("echo AT+CGATT=0 > /dev/ttyS1; sleep 0.1", "r");
+		FILE *detachFp = popen("echo AT#SHDN > /dev/ttyS1; sleep 0.1", "r");
 		if (detachFp != NULL)
 		{
 				pclose(detachFp);

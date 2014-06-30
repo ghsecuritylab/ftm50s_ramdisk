@@ -105,55 +105,58 @@ function loadQOS()
 
 function setQOS()
 {
-	if(typeof window.ActiveXObject != 'undefined') {
-		xmlhttp = (new ActiveXObject("Microsoft.XMLHTTP"));
-	} else {
-		xmlhttp = (new XMLHttpRequest());
-	}
-	
-	var sms_select = document.getElementById("smsSelect");
-	var data = "/cgi-bin/qos?cmd=set"
-
-	//var cid_select = document.getElementById("cidSelect");
-	var traffic_select = document.getElementById("trafficSelect");
-	var uplinkTF = document.getElementById("uplink");
-	var dnlinkTF = document.getElementById("dnlink");
-
-	data += "&cid=2"; //cid_select[cid_select.selectedIndex].value;
-	data += "&traffic=" + traffic_select.selectedIndex;
-	data += "&mb_uplink=" + uplinkTF.value;
-	data += "&mb_dnlink=" + dnlinkTF.value;
-	/*
-	data += "&gb_uplink=" + qosArr[4];
-	data += "&gb_dnlink=" + qosArr[5];
-	data += "&delivery_order=" + qosArr[6];
-	data += "&max_sdu_size=" + qosArr[7];
-	data += "&sdu_error_ratio=" + qosArr[8];
-	data += "&residual_bit_error_ratio=" + qosArr[9];
-	data += "&delivery_error_sdus=" + qosArr[10];
-	data += "&transfer_delay=" + qosArr[11];
-	data += "&traffic_handling_priority=" + qosArr[12];
-	*/
-	xmlhttp.open( "POST", data, true );
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=euc-kr");
-	xmlhttp.onreadystatechange = function()
+	if (confirm("설정 후 전화접속을 다시 시도합니다.\n(약 10초에서 1분사이에 시간이 소요됩니다.)"))
 	{
-		if( (xmlhttp.readyState == 4) && (xmlhttp.status == 200) )
-		{
-			try
-            {
-            	result = xmlhttp.responseXML.documentElement.getElementsByTagName("res")[0];
-            	if (result.firstChild.nodeValue == 'OK') {
-            		alert("Qos : OK");
-            	} else {
-            		alert("Qos : ERROR");
-            	}
-            }
-            catch(e)
-            {
-
-            }
+		if(typeof window.ActiveXObject != 'undefined') {
+			xmlhttp = (new ActiveXObject("Microsoft.XMLHTTP"));
+		} else {
+			xmlhttp = (new XMLHttpRequest());
 		}
+		
+		var sms_select = document.getElementById("smsSelect");
+		var data = "/cgi-bin/qos?cmd=set"
+
+		//var cid_select = document.getElementById("cidSelect");
+		var traffic_select = document.getElementById("trafficSelect");
+		var uplinkTF = document.getElementById("uplink");
+		var dnlinkTF = document.getElementById("dnlink");
+
+		data += "&cid=2"; //cid_select[cid_select.selectedIndex].value;
+		data += "&traffic=" + traffic_select.selectedIndex;
+		data += "&mb_uplink=" + uplinkTF.value;
+		data += "&mb_dnlink=" + dnlinkTF.value;
+		/*
+		data += "&gb_uplink=" + qosArr[4];
+		data += "&gb_dnlink=" + qosArr[5];
+		data += "&delivery_order=" + qosArr[6];
+		data += "&max_sdu_size=" + qosArr[7];
+		data += "&sdu_error_ratio=" + qosArr[8];
+		data += "&residual_bit_error_ratio=" + qosArr[9];
+		data += "&delivery_error_sdus=" + qosArr[10];
+		data += "&transfer_delay=" + qosArr[11];
+		data += "&traffic_handling_priority=" + qosArr[12];
+		*/
+		xmlhttp.open( "POST", data, true );
+		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=euc-kr");
+		xmlhttp.onreadystatechange = function()
+		{
+			if( (xmlhttp.readyState == 4) && (xmlhttp.status == 200) )
+			{
+				try
+				{
+					result = xmlhttp.responseXML.documentElement.getElementsByTagName("res")[0];
+					if (result.firstChild.nodeValue == 'OK') {
+						alert("Qos : OK");
+					} else {
+						alert("Qos : ERROR");
+					}
+				}
+				catch(e)
+				{
+
+				}
+			}
+		}
+		xmlhttp.send();
 	}
-	xmlhttp.send();
 }

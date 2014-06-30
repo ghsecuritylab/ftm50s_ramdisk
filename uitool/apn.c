@@ -65,6 +65,13 @@ int IOT_APN(qentry_t *pReq)
 
 				}
 				pclose(fp);
+
+				fp = popen("killall pppd", "r");
+				if (fp != NULL)
+				{
+						pclose(fp);
+				}
+
 				return 0;
 		}
 		return 0;

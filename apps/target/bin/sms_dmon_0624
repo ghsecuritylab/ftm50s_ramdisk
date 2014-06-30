@@ -208,6 +208,7 @@ do
 						sleep 1
 						#echo "set qos ok"
 #	state=state_cnum_sms # 0605
+						`killall pppd`
 						state=state_delete_sms
 					else
 						#echo "set qos fail"

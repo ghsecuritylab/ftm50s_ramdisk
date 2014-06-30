@@ -1,5 +1,5 @@
 #!/bin/sh
-`echo AT+CGATT=0 > /dev/ttyS1; sleep 0.1`
+`echo AT#SHDN > /dev/ttyS1; sleep 0.1`
 cp /etc/initQos.conf /etc.init/
 rm -rf /mnt/mtd/etc
 sleep 1
