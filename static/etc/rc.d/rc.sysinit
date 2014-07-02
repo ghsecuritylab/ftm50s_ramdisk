@@ -258,7 +258,7 @@ echo stop > /tmp/ppp.connect
 /bin/init_modem_log &
 /bin/new_mmon_0624 &
 /bin/sms_dmon_0624 &
-/bin/fota &
+#/bin/fota &
 /bin/data_dmon &
 
 fi
