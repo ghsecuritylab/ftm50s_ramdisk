@@ -25,7 +25,7 @@
                                         <td class='title center'><p id='usim_label'>USIM Status</p></td>
                                 </tr>
 				<tr>
-                                        <td class='title center'><p id='usim_status'>0</p></td>
+                                        <td class='title center'><p id='usim_status'>searching..</p></td>
                                 </tr>
                         </tbody>
                 </table>

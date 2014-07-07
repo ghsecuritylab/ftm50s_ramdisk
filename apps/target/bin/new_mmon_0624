@@ -273,7 +273,7 @@ do
 				`echo AT#NWCAUSE=0,0,1,1 > /dev/ttyS1; sleep 0.1`
 				#NEXT_STAT=STAT_INITIALIZED;
 				NEXT_STAT=STAT_RSSI_CHECK;
-				
+
 				# 06/24
 #				get_init_qos
 #				if [ $? -eq 0 ]
