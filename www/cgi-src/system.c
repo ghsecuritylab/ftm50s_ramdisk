@@ -298,6 +298,12 @@ int FTMC_System(qentry_t *pReq)
 		FTMC_LoadIndex(pReq);
 		XML_PutHeader(pReq);
 
+		FILE *sumFP = popen("/www/cgi-bin/scripts/sum_data.sh", "r");
+		if (sumFP != NULL)
+		{
+				pclose(sumFP);
+		}
+
 		//FILE *fp = popen("sync;sync;", "r");
 		FILE *detachFp = popen("echo AT#SHDN > /dev/ttyS1; sleep 0.1", "r");
 		if (detachFp != NULL)

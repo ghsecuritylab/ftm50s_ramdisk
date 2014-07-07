@@ -69,7 +69,8 @@ int IOT_USIM(qentry_t *pReq)
 		if (strcmp(value, "state_nwcause") == 0)
 		{
 				qcgires_setcontenttype(req, "text/xml");
-				fp = popen("/www/cgi-bin/scripts/sgact.sh", "r");
+			//	fp = popen("/www/cgi-bin/scripts/sgact.sh", "r");
+				fp = popen("cat /tmp/nwcause", "r");
 				while(fgets(buf, sizeof(buf), fp))
 				{
 						buf[strlen(buf)-1] = 0;

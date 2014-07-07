@@ -1,4 +1,5 @@
 <!-- Network Status -->
+var usim=true;
 
 function onInit()
 {
@@ -246,19 +247,27 @@ function loadCnum()
 							row.insertCell(18).innerHTML = "<td class='center'><p>" + "SIM wrong.." + "</p></td>";
 						break;
 						default:
-							var trimNumText = trim(result2.firstChild.nodeValue);					
-							var phoneNum;
-							if (trimNumText == "done")
-							{
-								phoneNum = "refresh.."
+							if (usim == true)
+							{	
+								var trimNumText = trim(result2.firstChild.nodeValue);					
+								var phoneNum;
+
+								if (trimNumText == "done")
+								{
+									phoneNum = "refresh.."
+								} else {
+									var textNumArr = trimNumText.split("||");
+									var NUM_ATCOMMAND = textNumArr[0].split(":")[0];
+									var NUM_ATCOMMAND_RES = textNumArr[0].split(":")[1];
+									phoneNum = NUM_ATCOMMAND_RES.split(",")[1];
+								}
+								document.getElementById('message').innerHTML='';
+								row.insertCell(18).innerHTML = "<td class='center'><p>" + phoneNum + "</p></td>";
 							} else {
-								var textNumArr = trimNumText.split("||");
-								var NUM_ATCOMMAND = textNumArr[0].split(":")[0];
-								var NUM_ATCOMMAND_RES = textNumArr[0].split(":")[1];
-								phoneNum = NUM_ATCOMMAND_RES.split(",")[1];
+								phoneNum = "미개통"
+								document.getElementById('message').innerHTML='';
+								row.insertCell(18).innerHTML = "<td class='center'><p>" + phoneNum + "</p></td>";
 							}
-							document.getElementById('message').innerHTML='';
-							row.insertCell(18).innerHTML = "<td class='center'><p>" + phoneNum + "</p></td>";
 						break;
 					}
 					row.cells[18].setAttribute('class', 'center');
@@ -440,9 +449,11 @@ function loadUsimStatus()
 					if (result == "true")
 					{
 						loadNwcause();
+						usim=true;
 					} else if (result == "false")
 					{
-						label.innerHTML = "stop"
+						label.innerHTML = "미개통"
+						usim=false;
 						loadNetworkState();
 					}
 
@@ -492,32 +503,15 @@ function loadNwcause()
 					var label = document.getElementById("usim_status");
 					//result = "false"
 
-					if (result != "stop")
-					{
-						refresh_count++;
-						if (refresh_count < 10)
-						{
-							loadNwcause();
-						} else {
-							refresh_count = 0;
-							//alert("Please Refresh..");
-							loadUsimInfo();
-						}
-						return;
-					} else {
-						label.innerHTML = "stop"
-						loadNetworkState();
-					}
-/*
-					if (result == "yes")
+					if (result == "sending")
 					{
 						loadUsimInfo();
-					} else if (result == "stop")
-					{
-						label.innerHTML = "stop"
+						return;
+					} else {
+						label.innerHTML = "발신정지"
+						alert("단말이 발신정지 상태입니다.\n고객센터에 연락하여 발신정지 해지를 요청하십시오.\n발신정지가 해지되면 단말을 재부팅 해주십시오.");
 						loadNetworkState();
 					}
-*/
             	} else {
             		// error
             		alert("Please Refresh..");

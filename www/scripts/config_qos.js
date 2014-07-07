@@ -77,7 +77,39 @@ function loadQOS()
 					var traffic = ATCOMMAND_RES.split(",")[1];
 					var uplink = ATCOMMAND_RES.split(",")[2];
 					var dnlink = ATCOMMAND_RES.split(",")[3];
-					
+
+
+					//3gpp 규격에 맞게 qos값 적용
+					if (uplink >= 64 && uplink <= 575)
+					{
+						if (uplink % 8 != 0)
+						{
+							uplink = 8 * parseInt(uplink / 8);
+						}
+					}
+					else if (uplink >= 576 && uplink <= 8640)
+					{
+						if (uplink % 64 != 0)
+						{
+							uplink = 64 * parseInt(uplink / 64);
+						}
+					}
+
+					if (dnlink >= 64 && dnlink <= 575)
+					{
+						if (dnlink % 8 != 0)
+						{
+							dnlink = 8 * parseInt(dnlink / 8);
+						}
+					}
+					else if (dnlink >= 576 && dnlink <= 8640)
+					{
+						if (dnlink % 64 != 0)
+						{
+							dnlink = 64 * parseInt(dnlink / 64);
+						}
+					}
+
 					qosArr = ATCOMMAND_RES.split(",");
 					//alert(qosArr);
 					//var cid_select = document.getElementById("cidSelect");

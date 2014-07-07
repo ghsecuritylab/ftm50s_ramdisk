@@ -379,8 +379,11 @@ do
 				#SCRIPT_FILE=`get_ppp_scripts`;
 				#echo "$SCRIPT_FILE"
 				#if [ -n "$SCRIPT_FILE" ]; then
-				is_nwcause=`/www/cgi-bin/scripts/sgact.sh`
-				if [ "$is_nwcause" != "stop" ]
+				
+				#is_nwcause=`/www/cgi-bin/scripts/sgact.sh`
+				#if [ "$is_nwcause" != "stop" ]
+				res=`cat /tmp/nwcause`
+				if [ "$res" = "sending" ]
 				then
 					#echo $is_nwcause
 					/usr/sbin/pppd file /etc/ppp/scripts/uc864-e >& /var/log/pppd &
@@ -413,8 +416,10 @@ do
 			then
 				if [ $RETRY -lt $MAX_RETRY ]
 				then
-					is_nwcause=`/www/cgi-bin/scripts/sgact.sh`
-					if [ "$is_nwcause" != "stop" ]
+					#is_nwcause=`/www/cgi-bin/scripts/sgact.sh`
+					#if [ "$is_nwcause" != "stop" ]
+					res=`cat /tmp/nwcause`
+					if [ "$res" = "sending" ]
 					then
 						#echo "STAT_CHECK_PPPD"
 						let 'RETRY+=1';

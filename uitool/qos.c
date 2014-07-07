@@ -19,7 +19,8 @@ int IOT_QOS(qentry_t *pReq)
 		if (strcmp(value, "state") == 0)
 		{
 				qcgires_setcontenttype(req, "text/xml");
-				fp = popen("echo AT+CGEQNEG=2 > /dev/ttyS1; sleep 0.1", "r");
+				//fp = popen("echo AT+CGEQNEG=2 > /dev/ttyS1; sleep 0.1", "r");
+				fp = popen("echo AT+CGEQREQ? > /dev/ttyS1; sleep 0.1", "r");
 				if (fp != NULL)
 				{
 						pclose(fp);
@@ -73,7 +74,8 @@ int IOT_QOS(qentry_t *pReq)
 				}
 				pclose(fp);
 
-				fp = popen("killall pppd", "r");
+				//fp = popen("killall pppd", "r");
+				fp = popen("/www/cgi-bin/scripts/killpppd.sh", "r");
 				if (fp != NULL)
 				{
 						pclose(fp);
