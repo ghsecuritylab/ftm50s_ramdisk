@@ -18,7 +18,7 @@ do
 #				echo "delete"
 
 
-#				sleep 1
+				`sleep 0.1`
 				`cat /dev/ttyS1 &> /var/log/modem &`
 
 
