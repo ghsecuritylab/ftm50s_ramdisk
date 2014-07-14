@@ -10,7 +10,7 @@ then
 		#echo $result
 		if [ "$result" = "+CMGR:" ]
 		then
-			cmd=`cat /var/log/modem | sed /^$/d | sed -n "$next_row"p'`
+			cmd=`cat /var/log/modem | sed /^$/d | awk '/smsapn/{ print }' | awk 'END { print }'`
 			echo $cmd
 		elif [ "$result" = "+CME" ]
 		then
