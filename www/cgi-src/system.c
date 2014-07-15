@@ -267,6 +267,14 @@ int FTMC_System(qentry_t *pReq)
 										printf("<RET>OK</RET>\n");
 										printf("</SYSTEM>\n");
 								}
+
+								if (strcmp(fwBuf, "fail") == 0)
+								{
+										XML_PutHeader(pReq);
+										printf("<SYSTEM>\n");
+										printf("<RET>FAIL</RET>\n");
+										printf("</SYSTEM>\n");
+								}
 						}
 
 				}
