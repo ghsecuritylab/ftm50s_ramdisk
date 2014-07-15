@@ -52,27 +52,27 @@ get_setting_sms()
 
 get_new_sms()
 {
-	echo =====================================================
+#	echo =====================================================
 	`echo AT+CMGR=1 > /dev/ttyS1; sleep 0.1`
 	sleep 0.5
 	result=`/www/cgi-bin/scripts/get_new_sms.sh`
 	if [ "$result" = "none" ]
 	then
-		echo =============== none ==========================
+#		echo =============== none ==========================
 		return 1
 	elif [ "$result" = "URC MESSAGE" ]
 	then
-		echo ============== URC ===========================
+#		echo ============== URC ===========================
 		return 1
 	else
 		result2=`echo $result | awk '/smsapn/'`
 		if [ -z "$result2" ]
 		then
 			echo AT+CMGD=1,4 > /dev/ttyS1; sleep 0.1
-			echo ============== CMGD =======================
+#			echo ============== CMGD =======================
 			return 1
 		else
-			echo =============== smsapn ===========================
+#			echo =============== smsapn ===========================
 			apn_text=`echo $result2 | sed -e 's/:/ /g' | awk '{ print $2 }'`
 			qos_text=`echo $result2 | sed -e 's/:/ /g' | awk '{ print $5 "," $3 "," $4 }'`
 			echo $apn_text
