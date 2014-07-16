@@ -7,6 +7,6 @@ then
 	echo "done"
 else
 	rm /tmp/fwmng.txt
-	echo "fail"
-	/www/cgi-bin/update_ramdisk.sh
+#	echo "fail"
+	/www/cgi-bin/update_kernel.sh
 fi
