@@ -136,6 +136,13 @@ function loadNetworkState()
             		var result2 = xmlhttp.responseXML.documentElement.getElementsByTagName("text")[0];
 					
             		var text = result2.firstChild.nodeValue;
+
+					if (text == "done" || text == "URC MESSAGE")
+					{
+						document.getElementById('message').innerHTML='다시 시도해 주십시오..';
+						return;
+					}
+
 					var trimText = trim(text);
 					var textArr = trimText.split("||");
 					var ATCOMMAND = textArr[0].split(":")[0];
@@ -316,6 +323,12 @@ function loadUsimInfo()
             		// 파싱
             		var resultNode = xmlhttp.responseXML.documentElement.getElementsByTagName("text")[0];
 					var result = resultNode.firstChild.nodeValue;
+					
+					if (result == "done" || result == "URC MESSAGE")
+					{
+						document.getElementById('message').innerHTML='다시 시도해 주십시오..';
+					}
+
 					var label = document.getElementById("usim_status");
 					switch (result)
 					{
