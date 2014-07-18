@@ -304,7 +304,12 @@ sudo mount -o loop ramdisk "$ROOT"
 
 	copy lib libstdc++.so.6.0.14 libstdc++.so.6
 	copy usr/lib libcurl.so.4.2.0 libcurl.so.4
+
 	copy usr/lib libnetsnmp.so.30.0.2 libnetsnmp.so.30
+	copy usr/lib libnetsnmptrapd.so.30.0.2 libnetsnmptrapd.so.30
+	copy usr/lib libnetsnmpmibs.so.30.0.2 libnetsnmpmibs.so.30
+	copy usr/lib libnetsnmpagent.so.30.0.2 libnetsnmpagent.so.30
+	copy usr/lib libnetsnmphelpers.so.30.0.2 libnetsnmphelpers.so.30
 
 	exit	3
 )
@@ -744,7 +749,7 @@ fi
 	$CP -rf node_usr/local/include "$ROOT/usr/local"
 	$CP -rf node_usr/local/lib "$ROOT/usr/local"
 	$CP -rf node_usr/local/share "$ROOT/usr/local"
-#	$CP -rf $STL/usr/share/snmp "$ROOT/usr/share/snmp"
+	$CP -rf $STL/usr/share/snmp "$ROOT/usr/share/snmp"
 
 )
 
