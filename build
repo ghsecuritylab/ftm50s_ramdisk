@@ -61,6 +61,12 @@ function copy()
     popd
 }
 
+function cp_zoneinfo()
+{
+
+	$CP -rf $STL/usr/share/zoneinfo "$ROOT/usr/share/zoneinfo"
+}
+
 function cp_usr_lib()
 {
     echo $CP "$STL/usr/lib/$1" $1
@@ -720,6 +726,9 @@ fi
 (
 	change_dir	/etc
 	mkdir -p	rc.d
+
+	cp_zoneinfo
+	link /usr/share/zoneinfo/Asia/Seoul localtime
 )
 
 (
